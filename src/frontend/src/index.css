@@ -1,0 +1,293 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Romantic OKLCH color system - Light mode */
+    --background: oklch(98% 0.01 320);
+    --foreground: oklch(20% 0.02 320);
+    --card: oklch(100% 0 0);
+    --card-foreground: oklch(20% 0.02 320);
+    --popover: oklch(100% 0 0);
+    --popover-foreground: oklch(20% 0.02 320);
+    --primary: oklch(45% 0.18 340);
+    --primary-foreground: oklch(98% 0.01 340);
+    --secondary: oklch(85% 0.08 320);
+    --secondary-foreground: oklch(25% 0.02 320);
+    --muted: oklch(92% 0.02 320);
+    --muted-foreground: oklch(50% 0.02 320);
+    --accent: oklch(75% 0.15 350);
+    --accent-foreground: oklch(20% 0.02 350);
+    --destructive: oklch(55% 0.22 25);
+    --destructive-foreground: oklch(98% 0.01 25);
+    --border: oklch(88% 0.02 320);
+    --input: oklch(88% 0.02 320);
+    --ring: oklch(45% 0.18 340);
+    --radius: 0.5rem;
+    --chart-1: oklch(60% 0.15 340);
+    --chart-2: oklch(70% 0.12 350);
+    --chart-3: oklch(65% 0.14 330);
+    --chart-4: oklch(75% 0.10 320);
+    --chart-5: oklch(55% 0.16 345);
+    --success: oklch(60% 0.15 145);
+    --success-foreground: oklch(98% 0.01 145);
+    --warning: oklch(70% 0.15 85);
+    --warning-foreground: oklch(20% 0.02 85);
+  }
+
+  .dark {
+    /* Romantic OKLCH color system - Dark mode */
+    --background: oklch(15% 0.03 320);
+    --foreground: oklch(95% 0.01 320);
+    --card: oklch(18% 0.03 320);
+    --card-foreground: oklch(95% 0.01 320);
+    --popover: oklch(18% 0.03 320);
+    --popover-foreground: oklch(95% 0.01 320);
+    --primary: oklch(65% 0.20 340);
+    --primary-foreground: oklch(15% 0.03 340);
+    --secondary: oklch(25% 0.05 320);
+    --secondary-foreground: oklch(95% 0.01 320);
+    --muted: oklch(22% 0.03 320);
+    --muted-foreground: oklch(65% 0.02 320);
+    --accent: oklch(55% 0.18 350);
+    --accent-foreground: oklch(95% 0.01 350);
+    --destructive: oklch(55% 0.22 25);
+    --destructive-foreground: oklch(95% 0.01 25);
+    --border: oklch(28% 0.03 320);
+    --input: oklch(28% 0.03 320);
+    --ring: oklch(65% 0.20 340);
+    --chart-1: oklch(60% 0.15 340);
+    --chart-2: oklch(70% 0.12 350);
+    --chart-3: oklch(65% 0.14 330);
+    --chart-4: oklch(75% 0.10 320);
+    --chart-5: oklch(55% 0.16 345);
+    --success: oklch(60% 0.15 145);
+    --success-foreground: oklch(15% 0.03 145);
+    --warning: oklch(70% 0.15 85);
+    --warning-foreground: oklch(15% 0.03 85);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer utilities {
+  /* Glassmorphism utilities */
+  .glass {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .glass-strong {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  /* Love line panel with high contrast background */
+  .love-line-panel {
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  .love-line-text {
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Glow effects */
+  .text-glow {
+    text-shadow: 0 0 20px rgba(255, 182, 193, 0.6),
+                 0 0 40px rgba(255, 182, 193, 0.4),
+                 0 0 60px rgba(255, 182, 193, 0.2);
+  }
+
+  .text-glow-heart {
+    text-shadow: 0 0 30px rgba(255, 105, 180, 0.8),
+                 0 0 60px rgba(255, 105, 180, 0.5),
+                 0 0 90px rgba(255, 105, 180, 0.3);
+  }
+
+  .text-glow-strong {
+    text-shadow: 0 0 30px rgba(255, 182, 193, 0.8),
+                 0 0 60px rgba(255, 182, 193, 0.6),
+                 0 0 90px rgba(255, 182, 193, 0.4);
+  }
+
+  .box-glow {
+    box-shadow: 0 0 30px rgba(255, 182, 193, 0.3),
+                0 0 60px rgba(255, 182, 193, 0.2);
+  }
+
+  /* Cinematic animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% {
+      opacity: 1;
+      filter: brightness(1);
+    }
+    50% {
+      opacity: 0.8;
+      filter: brightness(1.2);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 1s ease-out forwards;
+  }
+
+  .animate-fade-out {
+    animation: fadeOut 0.5s ease-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 1s ease-out forwards;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.8s ease-out forwards;
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* Error fallback styles */
+  .error-fallback-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 1rem;
+    background: linear-gradient(135deg, oklch(15% 0.03 320) 0%, oklch(20% 0.04 340) 100%);
+  }
+
+  .error-fallback-content {
+    max-width: 500px;
+    text-align: center;
+    color: oklch(95% 0.01 320);
+  }
+
+  .error-fallback-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  .error-fallback-message {
+    margin-bottom: 1.5rem;
+    opacity: 0.8;
+    line-height: 1.6;
+  }
+
+  .error-fallback-details {
+    margin-bottom: 1.5rem;
+    text-align: left;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.5rem;
+    padding: 1rem;
+  }
+
+  .error-fallback-details summary {
+    cursor: pointer;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+
+  .error-fallback-stack {
+    font-size: 0.875rem;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-break: break-word;
+    opacity: 0.7;
+  }
+
+  .error-fallback-button {
+    padding: 0.75rem 1.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 0.5rem;
+    color: oklch(95% 0.01 320);
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+
+  .error-fallback-button:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .error-fallback-button:active {
+    transform: scale(0.98);
+  }
+}

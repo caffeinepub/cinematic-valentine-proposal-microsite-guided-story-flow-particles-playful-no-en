@@ -1,0 +1,21 @@
+# Production Static Hosting Redirect Rules
+# 
+# These rules ensure proper SPA routing, asset serving, and security in production.
+# Supported by: Netlify, Vercel, Cloudflare Pages, and other modern static hosts.
+
+# 1. Block source files from being served in production (security)
+#    Any request to /src/* should return 404, not fall back to index.html
+/src/*     /404.html     404
+
+# 2. Static assets must NEVER be rewritten to index.html
+#    This is critical: /assets/* paths should be served as files or return 404
+#    Without this rule, missing assets would return HTML, causing MIME type errors
+/assets/*  /assets/:splat  200
+
+# 3. API and special paths (if needed in future)
+/api/*     /api/:splat     200
+
+# 4. SPA fallback for navigation routes (MUST be last)
+#    All other paths (non-file requests) fall back to index.html for client-side routing
+#    This enables routes like /proposal, /celebration, etc. to work
+/*         /index.html     200

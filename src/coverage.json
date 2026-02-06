@@ -1,0 +1,40 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-06T21:13:52.989Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 1,
+    "implemented": 1,
+    "items": [
+      {
+        "id": "REQ-49",
+        "summary": "Increase the readability of the text shown inside the “Why I Love You” modal (the window that appears after clicking “Why I Love You ❤️”) by adding/strengthening a background behind the appearing text so the lines are clearly readable on both mobile and desktop, without changing the modal’s existing copy.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/valentine/WhyILoveYouModal.tsx",
+          "frontend/src/index.css"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/valentine/WhyILoveYouModal.tsx",
+          "frontend/src/index.css"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "build-request.json",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/src/components/valentine/WhyILoveYouModal.tsx",
+    "frontend/src/index.css",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}

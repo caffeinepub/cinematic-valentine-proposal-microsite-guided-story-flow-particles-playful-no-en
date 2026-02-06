@@ -1,2 +1,3 @@
-# cinematic-valentine-proposal-microsite-guided-story-flow-particles-playful-no-en
-Exported from Caffeine project: Cinematic Valentine proposal microsite (guided story flow, particles, playful NO engine, celebration, audio)
+## 
+
+To run app build and run docker image: `docker build -t app . docker run -it --network host app`

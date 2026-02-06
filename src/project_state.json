@@ -1,0 +1,565 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 21,
+  "summary": "Luxury cinematic, emotionally immersive, fully mobile-responsive interactive Valentine proposal microsite titled “Dear Fatima urf Meethadil — Will You Be My Valentine?” with guided storytelling flow, glassmorphism UI, particle/animation effects, playful NO button engine, modals, slides, celebration sequence, audio toggles, plus a final-screen floating Promise Scroll (3 swipeable promises) and enhanced animations across the entire final screen—now also including a full-screen 3D heart “entering my heart” loading/intro scene before the typing intro, and a second 3D heart zoom transition after YES with on-screen text—targeting a standard production Vite React build (index.html references built /assets bundles) to resolve the blank white screen issue.",
+  "architectural_notes": [
+    "Single deployable HTML file containing all HTML/CSS/JS; must work offline (no external runtime dependencies).",
+    "Mobile-first responsive layout with lightweight, optimized animations (use requestAnimationFrame / CSS animations; respect reduced-motion where possible).",
+    "Audio should be user-initiated (toggle) for mobile autoplay restrictions; keep volume levels subtle.",
+    "New opening scene required: full-screen heart-loading/zoom animation before typing intro; must fade into existing intro automatically.",
+    "After YES click, add a second heart-zoom transition (deeper) showing exact text: “Getting more deeper in my heart”.",
+    "3D heart must be implemented as a real Three.js / React Three Fiber 3D heart model (offline-capable, bundled locally).",
+    "Deployment decision: use standard production Vite React build (Option 1) with index.html referencing compiled /assets/*.js bundles; do not load /src/main.tsx in production.",
+    "Decision: recreate the entire frontend as a proper standard Vite React project (with Vite config + dist build output) and redeploy dist/index.html + dist/assets/* so production no longer serves /src/main.tsx.",
+    "NO button movement should trigger only on click/tap (not on hover), while preserving existing NO-button engine behaviors.",
+    "On NO click/tap, flash the caption text “Itni aasani se NO nahi bol sakti 🙂” once (brief attention animation)."
+  ],
+  "known_issues": [
+    "Site shows a blank white page immediately on load (from first frame).",
+    "Browser console error: Failed to load module script due to strict MIME type mismatch (server responded with text/html instead of JS module) for /assets/index-*.js.",
+    "Browser console error: raft-editor:error disallowed origin: https://ancient-lavender-il7-draft.caffeine.xyz",
+    "Deployed HTML source still contains `<script type=\"module\" src=\"/src/main.tsx\"></script>`, indicating the production deployment is serving the dev entry instead of the Vite build output (dist).",
+    "NO button can overlap the YES button, “Why I Love You” button, and/or the caption, making controls hard to use.",
+    "“Why I Love You” modal content is not readable because it overlaps other elements (layering/responsive layout issue).",
+    "Back button is missing across the site and needs to be restored."
+  ],
+  "isFixRequest": true,
+  "existing_features": [
+    {
+      "id": "feature-create-a-single-page-fully-mobile-first-responsive-react-experience-titled-dear-fatima-urf-meethadil-will-you-be-my-valentine-that-guides-the-user-through-this-exact-storytelling-order-with-slow-cinematic-transitions-between-stages-1-cinematic-intro-typing-scene-2-proposal-question-screen-3-playful-no-button-interaction-4-emotional-yes-countdown-5-proposal-storytelling-slides-6-shooting-star-wish-moment-7-celebration-explosion-8-final-romantic-ending-screen",
+      "title": "Create a single-page, fully mobile-first responsive React experience titled “Dear Fatima urf Meethadil — Will You Be My Valentine?” that guides the user through this exact storytelling order with slow, cinematic transitions between stages: (1) cinematic intro typing scene → (2) proposal question screen → (3) playful NO-button interaction → (4) emotional YES countdown → (5) proposal storytelling slides → (6) shooting-star wish moment → (7) celebration explosion → (8) final romantic ending screen.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-the-specified-visual-design-system-across-the-entire-microsite-animated-background-gradient-soft-pink-rose-gold-deep-romantic-red-with-slow-movement-floating-heart-particles-with-depth-parallax-sparkle-particle-overlay-subtle-vignette-edge-shading-ambient-glow-behind-a-central-proposal-card-glassmorphism-frosted-proposal-card-with-rose-gold-glowing-border-rounded-corners-and-a-subtle-breathing-floating-animation-romantic-cursive-headings-and-elegant-sans-serif-body-typography-with-subtle-letter-spacing-and-very-soft-text-glow",
+      "title": "Implement the specified visual design system across the entire microsite: animated background gradient (soft pink → rose gold → deep romantic red) with slow movement; floating heart particles with depth/parallax; sparkle particle overlay; subtle vignette edge shading; ambient glow behind a central proposal card; glassmorphism frosted proposal card with rose-gold glowing border, rounded corners, and a subtle breathing/floating animation; romantic cursive headings and elegant sans-serif body typography with subtle letter-spacing and very soft text glow.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-the-opening-cinematic-typing-scene-with-a-blinking-cursor-that-types-these-lines-in-sequence-then-fades-in-the-main-glowing-proposal-line-a-dear-fatima-urf-meethadil-b-jab-se-tum-meri-zindagi-mein-aayi-ho-sab-kuch-thoda-aur-khoobsurat-lagne-laga-hai-then-fade-in-will-you-be-my-valentine",
+      "title": "Build the opening cinematic typing scene with a blinking cursor that types these lines in sequence, then fades in the main glowing proposal line: (a) “Dear Fatima urf Meethadil…” (b) “Jab se tum meri zindagi mein aayi ho, sab kuch thoda aur khoobsurat lagne laga hai…” then fade in: “Will You Be My Valentine?”",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-the-primary-interaction-screen-with-three-buttons-that-enter-with-a-floating-entrance-animation-and-include-micro-interactions-yes-primary-glowing-no-playful-moving-and-why-i-love-you-opens-modal-buttons-must-have-glow-on-hover-scale-interaction-and-mobile-tap-ripple-feedback",
+      "title": "Implement the primary interaction screen with three buttons that enter with a floating entrance animation and include micro-interactions: YES 💖 (primary glowing), NO 🙈 (playful moving), and “Why I Love You ❤️” (opens modal). Buttons must have glow-on-hover, scale interaction, and mobile tap ripple feedback.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-the-why-i-love-you-modal-as-a-glassmorphism-popup-with-fade-scale-animation-when-opened-display-these-lines-sequentially-one-after-another-with-timed-fades-1-mujhe-tumhari-hasi-pasand-hai-kyunki-usme-meri-duniya-basti-hai-2-tumhare-saath-chhoti-chhoti-baatein-bhi-yaadgaar-ban-jaati-hain-3-tum-mujhe-har-din-thoda-aur-better-insaan-bana-deti-ho-4-tumhare-saath-rehkar-sukoon-milta-hai-jo-kahin-aur-nahi-milta-5-aur-sabse-zyada-mujhe-tum-pasand-ho-bas-bina-kisi-wajah-ke",
+      "title": "Create the “Why I Love You” modal as a glassmorphism popup with fade+scale animation. When opened, display these lines sequentially (one after another with timed fades): 1) \"Mujhe tumhari hasi pasand hai, kyunki usme meri duniya basti hai.\" 2) \"Tumhare saath chhoti-chhoti baatein bhi yaadgaar ban jaati hain.\" 3) \"Tum mujhe har din thoda aur better insaan bana deti ho.\" 4) \"Tumhare saath rehkar sukoon milta hai jo kahin aur nahi milta.\" 5) \"Aur sabse zyada… mujhe tum pasand ho, bas bina kisi wajah ke.\"",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-the-no-button-smart-playful-engine-the-no-button-must-always-remain-visible-and-on-hover-or-click-tap-move-smoothly-to-a-random-new-in-bounds-position-within-the-viewport-proposal-card-area-using-a-curved-floating-motion-and-a-slight-bounce-at-the-end-on-each-interaction-show-one-random-shayari-from-the-provided-10-above-the-button-and-keep-a-persistent-caption-visible-itni-aasani-se-no-nahi-bol-sakti",
+      "title": "Implement the NO Button Smart Playful Engine: the NO button must always remain visible and, on hover or click/tap, move smoothly to a random new in-bounds position within the viewport/proposal card area using a curved floating motion and a slight bounce at the end. On each interaction, show one random shayari (from the provided 10) above the button, and keep a persistent caption visible: “Itni aasani se NO nahi bol sakti 🙂”.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-on-yes-click-run-the-cinematic-countdown-text-sequence-as-sequential-fade-screens-before-you-answer-just-know-this-every-moment-with-you-matters-then-transition-into-the-proposal-storytelling-slides",
+      "title": "On YES click, run the cinematic countdown text sequence as sequential fade screens: “Before you answer…” → “Just know this…” → “Every moment with you matters.” Then transition into the proposal storytelling slides.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-three-cinematic-proposal-story-slides-with-cross-fade-transitions-and-the-exact-provided-slide-copy-slide-1-jab-se-tum-meri-life-ka-hissa-bani-ho-sab-kuch-thoda-aur-meaningful-ho-gaya-slide-2-main-perfect-nahi-hoon-par-tumhare-saath-har-din-better-banna-chahta-hoon-slide-3-fatima-kya-tum-meri-valentine-banogi-sirf-aaj-nahi-balki-hamesha",
+      "title": "Create three cinematic proposal story slides with cross-fade transitions and the exact provided slide copy: Slide 1: “Jab se tum meri life ka hissa bani ho, sab kuch thoda aur meaningful ho gaya.” Slide 2: “Main perfect nahi hoon, par tumhare saath har din better banna chahta hoon.” Slide 3: “Fatima… kya tum meri Valentine banogi, sirf aaj nahi balki hamesha?”",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-the-shooting-star-wish-moment-dim-the-background-slightly-animate-a-shooting-star-crossing-the-screen-and-show-the-text-make-a-wish-i-already-did",
+      "title": "Implement the shooting star wish moment: dim the background slightly, animate a shooting star crossing the screen, and show the text: “Make a wish… I already did.”",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-the-celebration-climax-sequence-trigger-a-heart-confetti-explosion-burst-then-continuous-falling-heart-confetti-and-falling-rose-petals-play-a-one-time-heartbeat-sound-pulse-the-background-glow-synced-to-the-heartbeat-timing",
+      "title": "Build the celebration climax sequence: trigger a heart confetti explosion burst, then continuous falling heart confetti and falling rose petals; play a one-time heartbeat sound; pulse the background glow synced to the heartbeat timing.",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-love-meter-animation-during-after-celebration-show-the-label-love-level-1000-and-still-increasing-and-animate-a-bar-that-fills-slowly-and-pulses-while-filling",
+      "title": "Add a “Love Meter” animation during/after celebration: show the label “Love Level: 1000% and still increasing…” and animate a bar that fills slowly and pulses while filling.",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-the-final-ending-screen-with-a-romantic-rose-themed-background-and-glowing-text-containing-the-exact-provided-copy-and-signature-happy-rose-day-my-love-and-abhi-toh-meri-ho-hamesha-meri-hi-rehna-meethadil-plus-signature-forever-yours-utkarsh",
+      "title": "Create the final ending screen with a romantic rose-themed background and glowing text containing the exact provided copy and signature: “Happy Rose Day My Love 🌹” and “Abhi toh meri ho… hamesha meri hi rehna, Meethadil.” plus signature “Forever Yours, Utkarsh ❤️”.",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-the-audio-system-romantic-instrumental-background-music-with-a-visible-toggle-control-a-soft-ambient-background-sound-layer-and-the-heartbeat-sound-used-in-the-celebration-audio-levels-must-be-mobile-friendly-not-overly-loud-and-must-not-block-interaction-if-playback-is-restricted-by-the-browser-graceful-fallback-until-user-gesture",
+      "title": "Implement the audio system: romantic instrumental background music with a visible toggle control, a soft ambient background sound layer, and the heartbeat sound used in the celebration. Audio levels must be mobile-friendly (not overly loud) and must not block interaction if playback is restricted by the browser (graceful fallback until user gesture).",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-the-required-micro-interactions-and-cinematic-polish-cursor-sparkle-trail-desktop-and-touch-trail-alternative-mobile-friendly-button-hover-glow-proposal-card-breathing-float-soft-light-sweep-across-key-text-and-consistent-cinematic-easing-for-animations-transitions",
+      "title": "Add the required micro-interactions and cinematic polish: cursor sparkle trail (desktop) and touch trail alternative (mobile-friendly), button hover glow, proposal card breathing/float, soft light sweep across key text, and consistent cinematic easing for animations/transitions.",
+      "reqIds": [
+        "REQ-14"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-optimize-for-offline-and-performance-ensure-the-microsite-works-offline-after-first-load-by-caching-required-static-assets-images-audio-fonts-and-keep-animations-lightweight-optimized-for-mobile-avoid-jank-excessive-dom-nodes-or-unbounded-particle-counts",
+      "title": "Optimize for offline and performance: ensure the microsite works offline after first load by caching required static assets (images/audio/fonts) and keep animations lightweight/optimized for mobile (avoid jank, excessive DOM nodes, or unbounded particle counts).",
+      "reqIds": [
+        "REQ-15"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-and-render-custom-static-visual-assets-generated-images-to-elevate-the-luxury-cinematic-look-while-keeping-the-experience-offline-ready-store-them-under-frontend-public-assets-generated-and-use-them-in-the-ui-e-g-final-rose-background-subtle-vignette-texture-overlays-decorative-rose-gold-accents",
+      "title": "Add and render custom static visual assets (generated images) to elevate the luxury cinematic look while keeping the experience offline-ready. Store them under frontend/public/assets/generated and use them in the UI (e.g., final rose background, subtle vignette/texture overlays, decorative rose-gold accents).",
+      "reqIds": [
+        "REQ-16"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-new-floating-promise-scroll-section-to-the-final-ending-screen-stage-ending-that-contains-exactly-3-romantic-promises-ai-written-and-supports-swipe-navigation-between-promises",
+      "title": "Add a new floating “Promise Scroll” section to the final ending screen (stage: ending) that contains exactly 3 romantic promises (AI-written) and supports swipe navigation between promises.",
+      "reqIds": [
+        "REQ-17"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-use-the-following-exact-english-promise-copy-3-items-inside-the-promise-scroll-and-present-one-promise-per-page-panel-1-i-promise-to-choose-you-on-the-easy-days-and-even-more-on-the-hard-ones-2-i-promise-to-protect-your-peace-celebrate-your-dreams-and-be-your-safe-place-3-i-promise-to-keep-falling-for-you-a-little-more-every-single-day",
+      "title": "Use the following exact English promise copy (3 items) inside the Promise Scroll, and present one promise per “page”/panel: (1) “I promise to choose you—on the easy days, and even more on the hard ones.” (2) “I promise to protect your peace, celebrate your dreams, and be your safe place.” (3) “I promise to keep falling for you, a little more, every single day.”",
+      "reqIds": [
+        "REQ-18"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-enhance-animations-across-the-entire-final-ending-screen-not-only-the-promise-scroll-while-keeping-performance-mobile-friendly-and-respecting-prefers-reduced-motion",
+      "title": "Enhance animations across the entire final ending screen (not only the Promise Scroll) while keeping performance mobile-friendly and respecting prefers-reduced-motion.",
+      "reqIds": [
+        "REQ-19"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-integrate-the-promise-scroll-into-the-existing-final-ending-stage-component-without-changing-the-existing-final-message-copy-that-is-already-displayed-on-that-screen",
+      "title": "Integrate the Promise Scroll into the existing final ending stage component without changing the existing final message copy that is already displayed on that screen.",
+      "reqIds": [
+        "REQ-20"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-new-full-screen-standalone-opening-stage-that-plays-before-the-existing-typingintrostage-a-real-react-three-fiber-three-js-3d-heart-with-a-smooth-css-js-driven-camera-zoom-in-animation-an-entering-my-heart-loading-intro-scene-then-automatically-fades-into-the-current-typing-intro-flow",
+      "title": "Add a new full-screen, standalone opening stage that plays BEFORE the existing TypingIntroStage: a real React Three Fiber (Three.js) 3D heart with a smooth CSS/JS-driven camera zoom-in animation (an “entering my heart” loading/intro scene), then automatically fades into the current typing intro flow.",
+      "reqIds": [
+        "REQ-21"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-second-full-screen-3d-heart-transition-stage-that-runs-immediately-after-the-user-clicks-yes-on-the-proposal-screen-replay-a-heart-zoom-animation-that-goes-deeper-into-the-3d-heart-and-displays-the-exact-on-screen-text-getting-more-deeper-in-my-heart-then-continues-into-the-existing-yes-countdown-stage",
+      "title": "Add a second full-screen 3D heart transition stage that runs immediately after the user clicks YES on the proposal screen: replay a heart zoom animation that goes deeper into the 3D heart and displays the exact on-screen text “Getting more deeper in my heart”, then continues into the existing YES countdown stage.",
+      "reqIds": [
+        "REQ-22"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-stage-orchestration-to-include-the-two-new-heart-stages-while-keeping-all-existing-stages-and-ordering-intact-aside-from-inserting-the-new-intro-stage-before-the-typing-intro-and-inserting-the-new-yes-transition-stage-between-proposal-and-countdown",
+      "title": "Update the stage orchestration to include the two new heart stages while keeping all existing stages and ordering intact (aside from inserting the new intro stage before the typing intro and inserting the new YES-transition stage between proposal and countdown).",
+      "reqIds": [
+        "REQ-23"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-the-new-3d-heart-stages-are-mobile-first-performant-and-respect-prefers-reduced-motion-by-providing-a-reduced-motion-fallback-e-g-shorter-duration-reduced-movement-or-a-static-hero-frame-while-still-allowing-the-user-to-proceed-through-the-story-flow",
+      "title": "Ensure the new 3D heart stages are mobile-first performant and respect prefers-reduced-motion by providing a reduced-motion fallback (e.g., shorter duration, reduced movement, or a static hero frame) while still allowing the user to proceed through the story flow.",
+      "reqIds": [
+        "REQ-24"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-fix-the-immediate-blank-white-page-by-ensuring-the-production-build-serves-the-real-javascript-module-bundle-for-the-app-e-g-assets-index-js-with-the-correct-mime-type-application-javascript-and-that-those-built-asset-files-are-actually-present-in-the-deployed-frontend-assets-not-rewritten-to-index-html",
+      "title": "Fix the immediate blank white page by ensuring the production build serves the real JavaScript module bundle for the app (e.g., /assets/index-*.js) with the correct MIME type (application/javascript), and that those built asset files are actually present in the deployed frontend assets (not rewritten to /index.html).",
+      "reqIds": [
+        "REQ-26"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-frontend-entry-html-and-build-output-are-aligned-so-the-deployed-site-does-not-attempt-to-load-unbuilt-source-modules-such-as-src-main-tsx-in-production-and-the-deployed-index-html-references-the-compiled-bundle-produced-by-the-build",
+      "title": "Ensure frontend entry HTML and build output are aligned so the deployed site does not attempt to load unbuilt source modules (such as /src/main.tsx) in production, and the deployed index.html references the compiled bundle produced by the build.",
+      "reqIds": [
+        "REQ-27"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-service-worker-behavior-to-avoid-serving-html-responses-for-javascript-module-requests-and-other-static-assets-the-service-worker-must-not-cause-module-script-requests-to-be-fulfilled-by-cached-navigation-html-and-it-must-preserve-offline-support-for-the-intended-cached-static-assets",
+      "title": "Update the service worker behavior to avoid serving HTML responses for JavaScript module requests (and other static assets). The service worker must not cause module/script requests to be fulfilled by cached navigation HTML, and it must preserve offline support for the intended cached static assets.",
+      "reqIds": [
+        "REQ-28"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-minimal-top-level-runtime-error-fallback-so-that-if-the-app-fails-to-initialize-e-g-due-to-an-unexpected-exception-the-user-sees-a-readable-on-screen-error-state-instead-of-a-blank-white-screen",
+      "title": "Add a minimal top-level runtime error fallback so that if the app fails to initialize (e.g., due to an unexpected exception), the user sees a readable on-screen error state instead of a blank white screen.",
+      "reqIds": [
+        "REQ-29"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-do-not-treat-the-raft-editor-error-disallowed-origin-console-message-as-an-application-breaking-error-ensure-it-does-not-prevent-the-valentine-experience-from-rendering",
+      "title": "Do not treat the \"raft-editor:error disallowed origin\" console message as an application-breaking error; ensure it does not prevent the Valentine experience from rendering.",
+      "reqIds": [
+        "REQ-30"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-the-deployed-production-site-serves-the-vite-build-output-compiled-index-html-assets-bundles-rather-than-the-source-development-entry-that-loads-src-main-tsx-so-the-app-no-longer-renders-a-blank-white-page-in-production",
+      "title": "Ensure the deployed production site serves the Vite build output (compiled `index.html` + `/assets/*` bundles) rather than the source development entry that loads `/src/main.tsx`, so the app no longer renders a blank white page in production.",
+      "reqIds": [
+        "REQ-31"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-static-hosting-rewrite-rules-so-that-assets-are-never-rewritten-to-index-html-and-remove-any-production-routing-that-encourages-serving-source-modules-from-src",
+      "title": "Update static hosting rewrite rules so that `/assets/*` are never rewritten to `/index.html`, and remove any production routing that encourages serving source modules from `/src/*`.",
+      "reqIds": [
+        "REQ-32"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-preserve-correct-mime-types-and-caching-behavior-for-built-assets-so-that-assets-js-and-assets-mjs-if-generated-are-served-as-javascript-modules-and-are-cacheable-while-html-is-not-cached-aggressively",
+      "title": "Preserve correct MIME types and caching behavior for built assets so that `/assets/*.js` (and `/assets/*.mjs` if generated) are served as JavaScript modules and are cacheable, while HTML is not cached aggressively.",
+      "reqIds": [
+        "REQ-33"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-service-worker-pre-cache-strategy-so-the-production-built-js-css-bundles-required-to-boot-the-app-are-available-offline-after-the-first-successful-load-without-ever-responding-to-module-script-requests-with-cached-html",
+      "title": "Update the service worker pre-cache strategy so the production-built JS/CSS bundles required to boot the app are available offline after the first successful load, without ever responding to module/script requests with cached HTML.",
+      "reqIds": [
+        "REQ-34"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-rebuild-the-frontend-as-a-standard-vite-production-build-and-ensure-the-deployed-artifact-serves-the-compiled-output-built-index-html-assets-bundles-rather-than-the-development-entry-that-references-src-main-tsx",
+      "title": "Rebuild the frontend as a standard Vite production build and ensure the deployed artifact serves the compiled output (built `index.html` + `/assets/*` bundles) rather than the development entry that references `/src/main.tsx`.",
+      "reqIds": [
+        "REQ-35"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-validate-and-if-needed-update-offline-service-worker-behavior-so-it-never-fulfills-javascript-module-requests-with-cached-html-while-preserving-offline-support-after-a-successful-first-load",
+      "title": "Validate and, if needed, update offline/service-worker behavior so it never fulfills JavaScript module requests with cached HTML, while preserving offline support after a successful first load.",
+      "reqIds": [
+        "REQ-37"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-no-button-behavior-so-it-does-not-move-on-hover-and-does-not-move-on-touch-start-it-must-move-only-when-the-user-clicks-taps-the-no-button-while-keeping-all-existing-no-button-behaviors-random-shayari-display-curved-move-bounce-feel-always-visible-in-bounds-positioning-and-existing-styling-unchanged",
+      "title": "Update the NO button behavior so it does not move on hover and does not move on touch-start; it must move only when the user clicks/taps the NO button, while keeping all existing NO-button behaviors (random shayari display, curved move + bounce feel, always-visible/in-bounds positioning, and existing styling) unchanged.",
+      "reqIds": [
+        "REQ-38"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-make-the-persistent-no-caption-text-itni-aasani-se-no-nahi-bol-sakti-briefly-flash-once-whenever-the-user-clicks-taps-the-no-button-without-changing-the-caption-copy",
+      "title": "Make the persistent NO-caption text “Itni aasani se NO nahi bol sakti 🙂” briefly flash once whenever the user clicks/taps the NO button, without changing the caption copy.",
+      "reqIds": [
+        "REQ-39"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-additional-cute-playful-moments-across-multiple-stages-not-only-the-proposal-screen-to-make-the-experience-more-interactive-and-engaging-implemented-as-lightweight-micro-interactions-and-mini-interactions-that-are-mobile-friendly-and-do-not-disrupt-the-existing-story-flow-or-timing",
+      "title": "Add additional cute, playful moments across multiple stages (not only the proposal screen) to make the experience more interactive and engaging, implemented as lightweight micro-interactions and mini interactions that are mobile-friendly and do not disrupt the existing story flow or timing.",
+      "reqIds": [
+        "REQ-40"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-stop-serving-the-development-entry-html-in-production-ensure-the-deployed-site-serves-the-vite-production-build-output-dist-index-html-and-dist-assets-rather-than-frontend-index-html-that-loads-src-main-tsx",
+      "title": "Stop serving the development entry HTML in production: ensure the deployed site serves the Vite production build output (`dist/index.html` and `dist/assets/*`) rather than `frontend/index.html` that loads `/src/main.tsx`.",
+      "reqIds": [
+        "REQ-41"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-build-deploy-time-verification-step-that-fails-the-build-or-clearly-reports-an-error-if-the-artifact-being-deployed-contains-src-main-tsx-references-or-is-missing-the-compiled-assets-index-js-bundle-referenced-by-the-built-index-html",
+      "title": "Add a build/deploy-time verification step that fails the build (or clearly reports an error) if the artifact being deployed contains `/src/main.tsx` references or is missing the compiled `/assets/index-*.js` bundle referenced by the built `index.html`.",
+      "reqIds": [
+        "REQ-42"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-harden-production-rewrite-routing-rules-so-that-built-assets-are-never-rewritten-to-index-html-requests-under-assets-must-always-return-the-actual-asset-file-or-a-404-and-src-must-remain-blocked-in-production",
+      "title": "Harden production rewrite/routing rules so that built assets are never rewritten to `/index.html`: requests under `/assets/*` must always return the actual asset file (or a 404), and `/src/*` must remain blocked in production.",
+      "reqIds": [
+        "REQ-43"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-built-javascript-bundles-are-served-with-correct-mime-types-and-caching-assets-js-and-assets-mjs-must-be-served-as-javascript-modules-content-type-application-javascript-and-html-must-not-be-cached-aggressively",
+      "title": "Ensure built JavaScript bundles are served with correct MIME types and caching: `/assets/*.js` and `/assets/*.mjs` must be served as JavaScript modules (`Content-Type: application/javascript`), and HTML must not be cached aggressively.",
+      "reqIds": [
+        "REQ-44"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-service-worker-so-offline-support-remains-intact-while-guaranteeing-it-never-fulfills-javascript-module-requests-with-cached-html-additionally-ensure-the-production-built-js-css-bundles-required-to-boot-the-app-are-available-offline-after-the-first-successful-load",
+      "title": "Update the service worker so offline support remains intact while guaranteeing it never fulfills JavaScript/module requests with cached HTML; additionally, ensure the production-built JS/CSS bundles required to boot the app are available offline after the first successful load.",
+      "reqIds": [
+        "REQ-45"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-proposal-stage-no-button-movement-logic-so-the-no-button-always-maintains-a-fixed-minimum-safe-distance-from-1-the-yes-button-2-the-why-i-love-you-button-and-3-the-persistent-no-caption-text-on-both-mobile-and-desktop-the-no-button-must-never-overlap-or-cover-any-of-these-elements-after-it-repositions",
+      "title": "Update the Proposal stage NO-button movement logic so the NO button always maintains a fixed minimum safe distance from (1) the YES button, (2) the “Why I Love You” button, and (3) the persistent NO-caption text, on both mobile and desktop. The NO button must never overlap or cover any of these elements after it repositions.",
+      "reqIds": [
+        "REQ-46"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-restore-a-back-button-that-is-available-across-the-experience-all-relevant-stages-screens-and-returns-the-user-to-the-previous-stage-in-the-story-flow-without-breaking-animations-or-state-use-english-user-facing-text-for-the-control-label-back",
+      "title": "Restore a Back button that is available across the experience (all relevant stages/screens) and returns the user to the previous stage in the story flow without breaking animations or state. Use English user-facing text for the control label (\"Back\").",
+      "reqIds": [
+        "REQ-47"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-fix-the-why-i-love-you-modal-readability-so-its-content-never-overlaps-with-other-ui-elements-and-remains-readable-on-mobile-and-desktop-ensure-the-modal-has-correct-layering-z-index-spacing-and-responsive-behavior-including-scrolling-within-the-modal-when-content-exceeds-viewport-height",
+      "title": "Fix the “Why I Love You” modal readability so its content never overlaps with other UI elements and remains readable on mobile and desktop. Ensure the modal has correct layering (z-index), spacing, and responsive behavior (including scrolling within the modal when content exceeds viewport height).",
+      "reqIds": [
+        "REQ-48"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-increase-the-readability-of-the-text-shown-inside-the-why-i-love-you-modal-the-window-that-appears-after-clicking-why-i-love-you-by-adding-strengthening-a-background-behind-the-appearing-text-so-the-lines-are-clearly-readable-on-both-mobile-and-desktop-without-changing-the-modal-s-existing-copy",
+      "title": "Increase the readability of the text shown inside the “Why I Love You” modal (the window that appears after clicking “Why I Love You ❤️”) by adding/strengthening a background behind the appearing text so the lines are clearly readable on both mobile and desktop, without changing the modal’s existing copy.",
+      "reqIds": [
+        "REQ-49"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Create single-file (HTML+CSS+JS) cinematic proposal microsite with guided emotional journey flow (intro → proposal → playful NO → YES countdown → slides → shooting star → celebration → final screen), fully mobile-first responsive and offline-ready",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Implement visual design system: animated pink→rose-gold→deep-red gradient background with slow movement, heart particles w/ parallax depth, sparkle overlay, vignette shading, ambient glow behind glassmorphism proposal card, luxury typography styling",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Build opening cinematic typing scene with blinking cursor and fade-in of main proposal text",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Create button system (YES/NO/Why I Love You) with animated entrances, hover glow/scale micro-interactions, and mobile ripple tap feedback",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Add 'Why I Love You' glassmorphism modal with fade-scale animation and sequential Hinglish lines",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Implement smart playful NO-button engine: always visible, moves to random in-bounds position on hover/click with curved motion + bounce; shows random shayari (10 total) plus persistent caption",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "On YES click, run cinematic countdown text sequence then cross-fade proposal storytelling slides (3)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "Add shooting star wish moment (dim background, star traverses screen, wish text)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-9",
+      "summary": "Implement celebration climax: heart confetti burst + continuous falling hearts, falling rose petals, heartbeat-synced glow pulse, and one-time heartbeat sound",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-10",
+      "summary": "Add love meter animation (1000% and increasing) with filling/pulsing bar and final romantic ending screen with signature text",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-11",
+      "summary": "Implement audio system: romantic instrumental music toggle, soft ambient background layer, heartbeat celebration sound; mobile-friendly volume",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-12",
+      "summary": "Add micro-interactions: cursor sparkle trail, proposal card breathing float, soft light sweep across text, cinematic easing transitions",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-13",
+      "summary": "Incorporate images if possible (e.g., romantic rose background/hero imagery) while keeping single-file, offline, lightweight constraints",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-14",
+      "summary": "Add a floating “Promise Scroll” component on the final ending screen with 3 AI-written romantic promises, swipeable to navigate between promises",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-15",
+      "summary": "Enhance animations across the entire final ending screen (beyond existing effects), complementing the Promise Scroll and overall cinematic feel",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-16",
+      "summary": "Add a full-screen 3D heart zoom-in loading/intro scene that plays BEFORE the typing intro and fades into it automatically; on YES click replay a second 3D heart zoom animation going deeper with the exact text “Getting more deeper in my heart” before continuing the existing YES flow",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-21",
+      "summary": "If the new 3D heart implementation introduces any new static assets (e.g., a .glb model or textures under frontend/public), update the service worker pre-cache list so the experience remains offline-ready after first load.",
+      "reqIds": [
+        "REQ-25"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-22",
+      "summary": "Rebuild and deploy using a standard production Vite React build where index.html references the compiled /assets bundle (not /src/main.tsx) to fix the blank white screen/MIME-type module error",
+      "reqIds": [],
+      "status": "in_progress"
+    },
+    {
+      "id": "AR-24",
+      "summary": "Ensure static hosting rules are applied in production so that `/assets/*` requests are never rewritten to `/index.html`, and JavaScript bundle requests return `Content-Type: application/javascript` (no MIME-type mismatch).",
+      "reqIds": [
+        "REQ-36"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-25",
+      "summary": "Change NO button behavior: disable hover-triggered movement; NO button should move only when clicked/tapped while keeping all other NO-engine behaviors the same (shayari, bounce, always-visible, etc.)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-26",
+      "summary": "Make the persistent NO-caption “Itni aasani se NO nahi bol sakti 🙂” briefly flash once whenever the NO button is clicked/tapped",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-27",
+      "summary": "Add cute, playful moments (new micro-animations and mini interactions) across multiple stages of the microsite to make the experience more interactive and engaging",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-28",
+      "summary": "Prevent NO button overlap: enforce a fixed minimum safe distance from YES button, “Why I Love You” button, and the NO-caption across mobile + desktop (NO repositioning must avoid these exclusion zones)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-29",
+      "summary": "Restore/implement a Back button across the whole website (global navigation control available on all relevant stages/screens)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-30",
+      "summary": "Fix “Why I Love You” modal readability: ensure modal and its text never overlaps other UI elements; enforce proper layering (z-index), spacing, and responsive layout so content is readable on mobile + desktop",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Cinematic Valentine proposal microsite (guided story flow, particles, playful NO engine, celebration, audio)",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

@@ -1,0 +1,68 @@
+# Production Static Hosting Header Rules
+#
+# These rules ensure correct MIME types and optimal caching for all assets.
+# Supported by: Netlify, Vercel, Cloudflare Pages, and other modern static hosts.
+
+# JavaScript modules - CRITICAL for module script loading
+# Must be served with application/javascript MIME type
+/assets/*.js
+  Content-Type: application/javascript
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/*.mjs
+  Content-Type: application/javascript
+  Cache-Control: public, max-age=31536000, immutable
+
+# CSS files - long-lived cache with immutable flag
+/assets/*.css
+  Content-Type: text/css
+  Cache-Control: public, max-age=31536000, immutable
+
+# Images - long-lived cache
+/assets/*.png
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/*.jpg
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/*.jpeg
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/*.svg
+  Cache-Control: public, max-age=31536000, immutable
+
+# Audio files - long-lived cache
+/assets/*.mp3
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/*.wav
+  Cache-Control: public, max-age=31536000, immutable
+
+# Fonts - long-lived cache
+/assets/*.woff2
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/*.woff
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/*.ttf
+  Cache-Control: public, max-age=31536000, immutable
+
+# HTML files - MUST NOT be cached aggressively
+# Always revalidate to ensure users get latest version
+/
+  Cache-Control: public, max-age=0, must-revalidate
+
+/index.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Service worker - should be revalidated frequently
+/sw.js
+  Content-Type: application/javascript
+  Cache-Control: public, max-age=0, must-revalidate

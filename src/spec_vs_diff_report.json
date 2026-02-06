@@ -1,0 +1,32 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-06T21:13:52.985Z",
+  "summary": "REQ-49 is largely implemented: the “Why I Love You” modal now has a darker/blurred backdrop overlay plus a dedicated high-contrast dark panel behind each sequentially-fading line, with internal scrolling and correct click-outside-to-close behavior. One constraint appears unaddressed: respecting prefers-reduced-motion for the modal animations/timed fade-ins.",
+  "missing_requirements": [
+    {
+      "id": "REQ-49",
+      "requirement": "Keep the app mobile-first and ensure changes respect prefers-reduced-motion where applicable (especially for modal animations / sequential fade-ins).",
+      "reason": "The modal still applies animation classes (e.g., animate-fade-in, animate-scale-in) and uses timed sequential reveals via setTimeout without any conditional handling for reduced-motion users in the shown changes.",
+      "evidence": [
+        "frontend/src/components/valentine/WhyILoveYouModal.tsx"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Locking page scroll by setting document.body.style.overflow = 'hidden' while the modal is open.",
+      "reason": "REQ-49/ACs require the modal body to be scrollable and usable, but do not explicitly request global body scroll locking; this is an additional behavior beyond the stated requirements.",
+      "evidence": [
+        "frontend/src/components/valentine/WhyILoveYouModal.tsx"
+      ]
+    }
+  ],
+  "confidence": 0.74,
+  "changed_files": [
+    "frontend-file-summaries.txt",
+    "frontend/src/components/valentine/WhyILoveYouModal.tsx",
+    "frontend/src/index.css",
+    "project_state.json"
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "kind": "build_request",
+  "title": "Improve “Why I Love You” modal text readability after opening",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-49",
+      "text": "Increase the readability of the text shown inside the “Why I Love You” modal (the window that appears after clicking “Why I Love You ❤️”) by adding/strengthening a background behind the appearing text so the lines are clearly readable on both mobile and desktop, without changing the modal’s existing copy.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "after clicking why i love you. the next window appera i cannt read that apperared text.",
+          "yes"
+        ]
+      },
+      "acceptanceCriteria": [
+        "When the user clicks “Why I Love You ❤️”, the modal content text is clearly readable with a high-contrast background treatment behind it (e.g., stronger frosted panel or a dedicated darker/translucent text panel).",
+        "The sequential fade-in behavior of the 5 lines remains intact; readability improvements apply to lines as they appear.",
+        "On small mobile screens, no modal text overlaps other UI elements; if content exceeds viewport height, the modal body remains scrollable and usable.",
+        "Modal layering is correct (modal and its background overlay sit above the proposal screen), and taps/clicks outside the modal still close it while clicks inside do not."
+      ]
+    }
+  ],
+  "constraints": [
+    "Use English for any new user-facing UI text (do not change existing provided story copy).",
+    "Do not edit files under frontend/src/components/ui or other frontend immutablePaths listed in SYSTEM_CONTEXT; compose existing components instead.",
+    "Keep the app mobile-first and ensure changes respect prefers-reduced-motion where applicable."
+  ],
+  "nonGoals": [
+    "Do not change the story flow, stage ordering, or timing outside of the “Why I Love You” modal.",
+    "Do not add new backend functionality (backend is currently unused).",
+    "Do not change the existing love line copy content."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-increase-the-readability-of-the-text-shown-inside-the-why-i-love-you-modal-the-window-that-appears-after-clicking-why-i-love-you-by-adding-strengthening-a-background-behind-the-appearing-text-so-the-lines-are-clearly-readable-on-both-mobile-and-desktop-without-changing-the-modal-s-existing-copy",
+      "featureTitle": "Increase the readability of the text shown inside the “Why I Love You” modal (the window that appears after clicking “Why I Love You ❤️”) by adding/strengthening a background behind the appearing text so the lines are clearly readable on both mobile and desktop, without changing the modal’s existing copy.",
+      "files": [
+        "frontend/src/components/valentine/WhyILoveYouModal.tsx",
+        "frontend/src/index.css"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-49"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

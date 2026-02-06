@@ -1,0 +1,29 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Improve readability of “Why I Love You” modal text after opening",
+  "requirements": [
+    {
+      "id": "REQ-49",
+      "summary": "Add a stronger, high-contrast background treatment behind each sequentially revealed love line in the “Why I Love You” modal while preserving copy, animation behavior, scrollability, and correct modal layering/close behavior.",
+      "acceptanceCriteria": [
+        "When the user clicks “Why I Love You ❤️”, the modal content text is clearly readable with a high-contrast background treatment behind it (e.g., stronger frosted panel or a dedicated darker/translucent text panel).",
+        "The sequential fade-in behavior of the 5 lines remains intact; readability improvements apply to lines as they appear.",
+        "On small mobile screens, no modal text overlaps other UI elements; if content exceeds viewport height, the modal body remains scrollable and usable.",
+        "Modal layering is correct (modal and its background overlay sit above the proposal screen), and taps/clicks outside the modal still close it while clicks inside do not."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/valentine/WhyILoveYouModal.tsx",
+          "operation": "modify",
+          "description": "Improve readability by adding a dedicated high-contrast line background (e.g., a dark/translucent rounded panel behind each <p> line) while keeping the existing loveLines copy unchanged and preserving the current per-line fade-in timing/opacity transitions. Adjust modal layout so the close button does not overlap content on small screens (e.g., switch to an absolute-positioned close control and add appropriate top padding), keep the modal body scrollable within the viewport, and preserve outside-click-to-close with inside click stopPropagation and correct z-index layering."
+        },
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Add/adjust global utility styles to support the modal’s improved text readability (e.g., a reusable utility for a darker/translucent frosted text panel and optional subtle text shadow for contrast) while respecting mobile-first styling and the existing prefers-reduced-motion behavior."
+        }
+      ]
+    }
+  ]
+}
